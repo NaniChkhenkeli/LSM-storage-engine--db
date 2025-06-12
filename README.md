@@ -40,13 +40,16 @@ A high-performance, disk-based key-value storage engine implementing the Log-Str
 - Implements tiered compaction strategy
 
 
-### Configuration
-Key parameters (set as constants in LSMDatabase):
-
-MEMTABLE_SIZE_THRESHOLD: Entry count trigger for flushing (default: 8)
-
-MEMTABLE_MEMORY_THRESHOLD: Memory usage trigger for flushing (default: 5KB)
-
-DENSE_INDEX_THRESHOLD: SSTable size for using dense vs. sparse index (default: 10,000)
-
-SPARSE_INDEX_INTERVAL: Key interval for sparse index (default: 100)
+### Performance Considerations
+Write Performance:
+All writes go first to MemTable and WAL
+Background flushes to disk minimize write stalls
+Read Performance:
+Checks MemTable first (most recent data)
+Uses Bloom filters to skip unnecessary SSTable checks
+Implements both sparse and dense indexing strategies
+Compaction:
+Runs in background to merge SSTables
+Reduces storage overhead and improves read performance
+Higher levels contain more consolidated data
+Recovery
