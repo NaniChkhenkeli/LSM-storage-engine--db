@@ -40,16 +40,19 @@ A high-performance, disk-based key-value storage engine implementing the Log-Str
 - Implements tiered compaction strategy
 
 
-### Performance Considerations
+Performance Considerations
 Write Performance:
-All writes go first to MemTable and WAL
-Background flushes to disk minimize write stalls
+All writes go first to the MemTable and Write-Ahead Log (WAL). Background flushes to disk minimize write stalls.
+
 Read Performance:
-Checks MemTable first (most recent data)
+Checks the MemTable first to access the most recent data
 Uses Bloom filters to skip unnecessary SSTable checks
 Implements both sparse and dense indexing strategies
+
 Compaction:
-Runs in background to merge SSTables
+Runs in the background to merge SSTables
 Reduces storage overhead and improves read performance
-Higher levels contain more consolidated data
-Recovery
+Higher levels contain more consolidated and compacted data
+
+Recovery:
+On restart, the engine uses the WAL to restore the latest MemTable state, ensuring crash consistency and durability.
