@@ -1,0 +1,12 @@
+#SSTable Metadata for generation 1
+#Thu Jun 12 17:34:43 GET 2025
+bloomFilterFalsePositiveRate=0.01
+checksum=
+creationTimestamp=1749735283954
+entryCount=8
+fileSize=255
+generation=1
+level=0
+maxKey=key8
+minKey=key1
+totalBytes=255
