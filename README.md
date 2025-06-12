@@ -40,6 +40,9 @@ A high-performance, disk-based key-value storage engine implementing the Log-Str
 - Implements tiered compaction strategy
 
 
+----------
+
+
 ### Performance Considerations
 Write Performance:
 All writes go first to the MemTable and Write-Ahead Log (WAL). Background flushes to disk minimize write stalls.
